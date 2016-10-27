@@ -59,11 +59,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _AppJsx = __webpack_require__(158);
+	var _componentsAppJsx = __webpack_require__(158);
 
-	var _AppJsx2 = _interopRequireDefault(_AppJsx);
+	var _componentsAppJsx2 = _interopRequireDefault(_componentsAppJsx);
 
-	_react2['default'].render(_react2['default'].createElement(_AppJsx2['default'], null), document.getElementById('container'));
+	_react2['default'].render(_react2['default'].createElement(_componentsAppJsx2['default'], null), document.getElementById('container'));
 
 /***/ },
 /* 2 */
