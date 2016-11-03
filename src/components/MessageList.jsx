@@ -12,23 +12,24 @@ class MessageList extends React.Component {
     this.state = {
       messages: []
     };
-    // this.firebaseRef = new Firebase('https://react-stack.firebaseio.com/messages');
-    // this.firebaseRef.once("value", (dataSnapshot) => {
-    //   var messages = dataSnapshot.val();
-    //   console.log(messages);
-    //   this.setState({
-    //     messages: messages
-    //   });
-    // })
+
   }
 
   componentDidMount() {
-    debugger;
     const rootRef = firebase.database().ref('messages');
-    const messageRef = rootRef.child('messages');
-    messageRef.on('value', snap => {
+    rootRef.once('value', snap => {
+      var messagesVal = snap.val();
+      var messages = _(messagesVal)
+        .keys()
+        .map((messageKey)=> {
+          var cloned =_.clone(messagesVal[messageKey]);
+          cloned.key = messageKey;
+          return cloned;
+        })
+        .value();
+
       this.setState({
-            messages: snap.val()
+            messages: messages
           });
     })
   }
@@ -40,7 +41,7 @@ class MessageList extends React.Component {
   render(){
     var messageNodes = this.state.messages.map((message)=> {
       return (
-          <Message message={message.message} />
+          <Message message={message.message} key={message.date} />
       );
     })
     return (
