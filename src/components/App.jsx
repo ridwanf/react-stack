@@ -3,10 +3,21 @@ import MessageList from './MessageList.jsx';
 import ChannelList from './ChannelList.jsx';
 import MessageBox from './MessageBox.jsx';
 import mui from 'material-ui';
+import * as firebase from 'firebase';
 
 var ThemeManager = new mui.Styles.ThemeManager();
 var Colors = mui.Styles.Colors;
 var AppBar = mui.AppBar;
+
+// let config = {
+//   apiKey: "AIzaSyBzqAYu5xPu8xmYdboiQW9kPk1p0QHBE4k",
+//   authDomain: "react-stack-65c96.firebaseapp.com",
+//   databaseURL: "https://react-stack-65c96.firebaseio.com",
+//   storageBucket: "react-stack-65c96.appspot.com",
+//   messagingSenderId: "298137980517"
+// };
+// firebase.initializeApp(config);
+
 
 class App extends React.Component {
   constructor(){

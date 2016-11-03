@@ -5,11 +5,19 @@
     <title></title>
   </head>
   <body>
-    <div id="container"></div>
+    <div id="container"></div>    
     <script src="https://www.gstatic.com/firebasejs/3.5.3/firebase.js"></script>
     <script>
-
-  </script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBzqAYu5xPu8xmYdboiQW9kPk1p0QHBE4k",
+        authDomain: "react-stack-65c96.firebaseapp.com",
+        databaseURL: "https://react-stack-65c96.firebaseio.com",
+        storageBucket: "react-stack-65c96.appspot.com",
+        messagingSenderId: "298137980517"
+      };
+      firebase.initializeApp(config);
+    </script>
     <script src="/public/main.js"></script>
   </body>
 </html>
