@@ -1,7 +1,7 @@
 import React from 'react';
 import App from './components/App.jsx';
 require('./main.scss');
-// import * as firebase from 'firebase'
+import * as firebase from 'firebase'
 //var firebase = require('firebase');
 
 // Initialize Firebase

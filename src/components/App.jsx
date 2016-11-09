@@ -2,23 +2,17 @@ import React from 'react';
 import MessageList from './MessageList.jsx';
 import ChannelList from './ChannelList.jsx';
 import MessageBox from './MessageBox.jsx';
+import Login from './Login.jsx';
 import mui from 'material-ui';
+import connectToStores from 'alt/utils/connectToStores';
+import ChatStore from '../stores/ChatStore';
 import * as firebase from 'firebase';
 
 var ThemeManager = new mui.Styles.ThemeManager();
 var Colors = mui.Styles.Colors;
 var AppBar = mui.AppBar;
 
-// let config = {
-//   apiKey: "AIzaSyBzqAYu5xPu8xmYdboiQW9kPk1p0QHBE4k",
-//   authDomain: "react-stack-65c96.firebaseapp.com",
-//   databaseURL: "https://react-stack-65c96.firebaseio.com",
-//   storageBucket: "react-stack-65c96.appspot.com",
-//   messagingSenderId: "298137980517"
-// };
-// firebase.initializeApp(config);
-
-
+@connectToStores
 class App extends React.Component {
   constructor(){
     super();
@@ -28,6 +22,14 @@ class App extends React.Component {
       primary3Color: Colors.blue100,
       accent1Color: Colors.pink400
     });
+  }
+
+  static getStores(){
+    return [ChatStore];
+  }
+
+  static getPropsFromStores(){
+    return ChatStore.getState();
   }
 
   static childContextTypes = {
@@ -41,21 +43,28 @@ class App extends React.Component {
   }
 
   render(){
-
+    var view = <Login />;
+    if (this.props.user) {
+      view = (
+        <div>
+          <div style={{
+              display: 'flex',
+              flexFlow: 'row wrap',
+              maxWidth: 1200,
+              width: '100%',
+              margin: '30px auto 30px'
+            }}>
+          <ChannelList/>
+          <MessageList/>
+        </div>
+        <MessageBox />
+        </div>
+      );
+    }
     return (
         <div>
-          <AppBar title="Mere Chat App" />
-            <div style={{
-                display: 'flex',
-                flexFlow: 'row wrap',
-                maxWidth: 1200,
-                width: '100%',
-                margin: '30px auto 30px'
-              }}>
-            <ChannelList/>
-            <MessageList/>
-          </div>
-          <MessageBox />
+          <AppBar title="MereChat App" />
+          {{view}}
         </div>
     );
   }
