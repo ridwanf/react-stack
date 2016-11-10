@@ -10,7 +10,6 @@ class MessageBox extends React.Component {
     this.state = {
       message: '',
     }
-    this.firebaseRef = firebase.database().ref('messages');
   }
 
   onChange(event) {

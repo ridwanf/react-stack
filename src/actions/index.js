@@ -1,9 +1,17 @@
 import alt from '../alt';
 
 class Actions {
+  constructor(){
+    this.generateActions(
+      'channelsReceived',
+      'channelsFailed',
+      'messagesReceived',
+      'messagesFailed'
+    );
+  }
+
   login(args){
     return (dispatch) => {
-      debugger;
       var provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('https://www.googleapis.com/auth/plus.login');
       firebase.auth().signInWithPopup(provider).then(function(result) {
