@@ -1,17 +1,29 @@
 import React from 'react';
 import mui from 'material-ui';
+import Actions from '../actions';
 
 var {ListItem} = mui;
 
 class Channel extends React.Component {
   constructor(props){
     super(props);
-    this.state = {};
+  }
+
+  onClick(){
+    Actions.channelOpened(this.props.channel);
   }
 
   render(){
+    let style ={};
+    if (this.props.channel.selected) {
+      style.backroundColor = "#f0f0f0";
+    }
       return (
-      <ListItem>{this.props.channel}</ListItem>
+      <ListItem
+        style= {{style}}
+        onClick={this.onClick.bind(this)}
+        key={this.props.channel.key}
+      >{this.props.channel.name}</ListItem>
     );
   }
 }
