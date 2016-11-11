@@ -6,7 +6,13 @@ class Actions {
       'channelsReceived',
       'channelsFailed',
       'messagesReceived',
-      'messagesFailed'
+      'messagesFailed',
+      'channelOpened',
+      'messagesLoading',
+      'sendMessage',
+      'messageSendSuccess',
+      'messageSendError',
+      "messageReceived"
     );
   }
 

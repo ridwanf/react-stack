@@ -5,7 +5,7 @@ import _ from 'lodash';
 import connectToStores from 'alt/utils/connectToStores';
 import ChatStore from '../stores/ChatStore'
 
-var {Card,List} = mui;
+var {Card,List, CircularProgress} = mui;
 
 @connectToStores
 class MessageList extends React.Component {
@@ -24,12 +24,23 @@ static getPropsFromStores(){
   render(){
     let messageNodes = null;
 
-    if (this.props.messages) {
+    if (!this.props.messagesLoading) {
        messageNodes = _.values(this.props.messages).map((message)=> {
         return (
-            <Message message={message.message} key={message.key} />
+            <Message message={message} key={message.key} />
         );
-      })
+      });
+    } else{
+      messageNodes =<CircularProgress
+        mode="indeterminate"
+        style={{
+          paddingTop: '20',
+          paddingBottom: '20',
+          margin: '0 auto',
+          display: 'block',
+          width: '60px',
+        }}
+      />
     }
 
     return (

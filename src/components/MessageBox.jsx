@@ -2,19 +2,21 @@ import React from 'react';
 import mui from 'material-ui';
 import Firebase from 'firebase';
 import trim from 'trim';
+import Actions from '../actions';
+
 var {Card} = mui;
 
 class MessageBox extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      message: '',
+      messageInput: '',
     }
   }
 
   onChange(event) {
     this.setState({
-      message: event.target.value,
+      messageInput: event.target.value,
     });
   }
 
@@ -22,12 +24,10 @@ class MessageBox extends React.Component {
     if (event.keyCode === 13 && trim(event.target.value) != '') {
       event.preventDefault();
 
-      this.firebaseRef.push({
-        message: this.state.message
-      });
+      Actions.sendMessage(this.state.messageInput);
 
       this.setState({
-        message:''
+        messageInput:''
       })
     }
   }
@@ -40,7 +40,7 @@ class MessageBox extends React.Component {
           padding: 30
         }}>
         <textarea
-          value = {this.state.message}
+          value = {this.state.messageInput}
           onChange = {this.onChange.bind(this)}
           onKeyUp = {this.onKeyUp.bind(this)}
           style={{
