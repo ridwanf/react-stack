@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "5.9.1",
-    "npm": "3.7.3"
+      "node": "0.10.20"
   },
   "scripts": {
     "webpack": "node_modules/.bin/webpack",
